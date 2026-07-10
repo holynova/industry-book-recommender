@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import books from './data/books.json'
 import './App.css'
 
@@ -8,15 +8,37 @@ const sortOptions = {
   category: (a, b) => a.category.localeCompare(b.category, 'zh-CN') || a.title.localeCompare(b.title, 'zh-CN'),
 }
 
-function doubanSearchUrl(book) {
+function useDoubanMode() {
+  const [mode, setMode] = useState('mobile')
+
+  useEffect(() => {
+    if (!window.matchMedia) return
+
+    const desktopInput = window.matchMedia('(pointer: fine) and (hover: hover)')
+    const mobileUserAgent = navigator.userAgentData?.mobile ?? /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+    const updateMode = () => setMode(!mobileUserAgent && desktopInput.matches ? 'desktop' : 'mobile')
+
+    updateMode()
+    desktopInput.addEventListener('change', updateMode)
+    return () => desktopInput.removeEventListener('change', updateMode)
+  }, [])
+
+  return mode
+}
+
+function doubanSearchUrl(book, mode) {
   const terms = [book.title, book.author].filter(Boolean).join(' ')
-  return `https://www.douban.com/search?cat=1001&q=${encodeURIComponent(terms)}`
+  const encodedTerms = encodeURIComponent(terms)
+  return mode === 'desktop'
+    ? `https://www.douban.com/search?cat=1001&q=${encodedTerms}`
+    : `https://m.douban.com/search?query=${encodedTerms}&type=1001`
 }
 
 function App() {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('全部')
   const [sort, setSort] = useState('likes')
+  const doubanMode = useDoubanMode()
 
   const categories = useMemo(
     () => ['全部', ...new Set(books.map((book) => book.category).sort((a, b) => a.localeCompare(b, 'zh-CN')))],
@@ -102,7 +124,9 @@ function App() {
               </div>
               <div className="book-footer">
                 <p><strong>{book.likes}</strong> 原评论点赞</p>
-                <a href={doubanSearchUrl(book)} target="_blank" rel="noreferrer">在豆瓣搜索 <span aria-hidden="true">↗</span></a>
+                <a href={doubanSearchUrl(book, doubanMode)} target="_blank" rel="noreferrer">
+                  在豆瓣搜索（{doubanMode === 'desktop' ? '桌面版' : '移动版'}） <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
           ))}
