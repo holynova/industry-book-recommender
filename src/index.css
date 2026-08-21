@@ -1,33 +1,208 @@
 :root {
-  color: #202b2b;
-  background: #f3f2ed;
-  font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  /* Default Theme: 砚墨深蓝 (Navy & Coral Ink) */
+  --brand-nav: #162a45;
+  --brand-nav-text: #ffffff;
+  --brand-nav-sub: #d0dbe7;
+  --brand-primary: #1d3557;
+  --brand-primary-hover: #122238;
+  --brand-primary-light: #eaf1f8;
+  
+  --brand-accent: #e63946;
+  --brand-accent-hover: #c92a37;
+  --brand-accent-light: #fde8ea;
+  
+  --brand-gold: #d4941e;
+  --brand-gold-light: #fef5e7;
+  --brand-star: #e09015;
+
+  --bg-app: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafbfc;
+  --bg-muted: #edf1f6;
+  --bg-subtle: #f8fafc;
+
+  --ink-primary: #19202c;
+  --ink-secondary: #475569;
+  --ink-muted: #64748b;
+  --ink-faint: #94a3b8;
+
+  --link-color: #2563eb;
+  --link-hover-bg: #2563eb;
+  --link-hover-text: #ffffff;
+
+  --xhs-red: #ff2442;
+  --xhs-red-light: #fff0f2;
+  --xhs-red-border: #ffd1d8;
+
+  --shelf-wood: #4a3424;
+  --shelf-wood-light: #5d4330;
+  --shelf-wood-dark: #322115;
+  --shelf-shadow: rgba(0, 0, 0, 0.35);
+
+  --line-subtle: #e2e8f0;
+  --line-regular: #cbd5e1;
+  --line-strong: #94a3b8;
+
+  --card-shadow: 0 2px 8px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 12px 28px rgba(15, 23, 42, 0.12), 0 3px 8px rgba(15, 23, 42, 0.06);
+  --cover-shadow: 0 4px 14px rgba(15, 23, 42, 0.14), 0 1px 3px rgba(15, 23, 42, 0.08);
+
+  --font-serif: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  --font-title: "Songti SC", "Noto Serif SC", "Source Han Serif SC", STSong, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  font-family: var(--font-serif);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --ink: #202b2b;
-  --muted: #66716e;
-  --line: #d7d6ce;
-  --line-strong: #c2c3ba;
-  --accent: #b24b35;
-  --accent-2: #296a67;
-  --surface: #ffffff;
-  --surface-muted: #e8ede8;
+}
+
+/* Theme 2: 暖枫赤陶 (Warm Terracotta & Cedar) */
+[data-theme="warm"] {
+  --brand-nav: #4a2818;
+  --brand-nav-text: #faede6;
+  --brand-nav-sub: #e6cec1;
+  --brand-primary: #7a3a1e;
+  --brand-primary-hover: #5e2a14;
+  --brand-primary-light: #fbeee8;
+
+  --brand-accent: #c44525;
+  --brand-accent-hover: #a33519;
+  --brand-accent-light: #fceeda;
+
+  --brand-gold: #c97a16;
+  --brand-gold-light: #fef4e6;
+  --brand-star: #c97a16;
+
+  --bg-app: #f7f3ec;
+  --bg-card: #fdfbf7;
+  --bg-card-hover: #f9f4ec;
+  --bg-muted: #ede7dc;
+  --bg-subtle: #faf7f0;
+
+  --ink-primary: #2c221b;
+  --ink-secondary: #57483e;
+  --ink-muted: #7d6c60;
+  --ink-faint: #a69689;
+
+  --link-color: #a84824;
+  --xhs-red: #c44525;
+  --xhs-red-light: #faece6;
+  --xhs-red-border: #f0cfc2;
+
+  --line-subtle: #e6ddce;
+  --line-regular: #d7cab8;
+  --line-strong: #bdae99;
+}
+
+/* Theme 3: 玄夜深色 (Midnight Slate Dark) */
+[data-theme="dark"] {
+  --brand-nav: #0f1318;
+  --brand-nav-text: #e2e8f0;
+  --brand-nav-sub: #94a3b8;
+  --brand-primary: #3b82f6;
+  --brand-primary-hover: #2563eb;
+  --brand-primary-light: #1e293b;
+
+  --brand-accent: #f43f5e;
+  --brand-accent-hover: #e11d48;
+  --brand-accent-light: #33151f;
+
+  --brand-gold: #f59e0b;
+  --brand-gold-light: #2d2311;
+  --brand-star: #fbbf24;
+
+  --bg-app: #0f141c;
+  --bg-card: #19202c;
+  --bg-card-hover: #212b3b;
+  --bg-muted: #141a24;
+  --bg-subtle: #1e2634;
+
+  --ink-primary: #f1f5f9;
+  --ink-secondary: #cbd5e1;
+  --ink-muted: #94a3b8;
+  --ink-faint: #64748b;
+
+  --link-color: #60a5fa;
+  --xhs-red: #fb7185;
+  --xhs-red-light: #2b141a;
+  --xhs-red-border: #4d1c27;
+
+  --shelf-wood: #1e1712;
+  --shelf-wood-light: #2c221b;
+  --shelf-wood-dark: #120e0a;
+  --shelf-shadow: rgba(0, 0, 0, 0.75);
+
+  --line-subtle: #242f40;
+  --line-regular: #334155;
+  --line-strong: #475569;
+
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.3);
+  --cover-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  min-width: 320px;
+html, body {
   margin: 0;
+  padding: 0;
+  min-width: 320px;
+  background-color: var(--bg-app);
+  color: var(--ink-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 4px;
+  border: 2px solid var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
 }
 
 button,
+input,
 select {
+  font: inherit;
   -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -36,5 +211,6 @@ select {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
