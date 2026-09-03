@@ -11,16 +11,18 @@
 ## 本地运行
 
 ```sh
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ## 构建与验证
 
 ```sh
-npm run lint
-npm run build
+pnpm run lint
+pnpm run build
 ```
+
+GitHub Pages uses `pnpm run build:pages` to keep the repository-prefix asset paths.
 
 ## 数据说明
 
@@ -32,4 +34,6 @@ npm run build
 
 发布地址：`https://holynova.github.io/industry-book-recommender/`。
 
-推送到 `main` 后，GitHub Actions 会自动构建并发布 `dist/`。
+推送到 `main` 后，GitHub Actions 会自动运行 `pnpm run build:pages` 并发布 `dist/`。
+
+Cloudflare Workers Static Assets 使用 `pnpm run build` 发布 `dist/`；部署命令需要通过 `CLOUDFLARE_ACCOUNT_ID` 传入账号，不要把 token 写入仓库。
