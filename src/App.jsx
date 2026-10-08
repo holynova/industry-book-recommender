@@ -131,8 +131,9 @@ function getCategoryColor(category) {
 }
 
 // Star Rating Component
-function RatingStars({ rating, showNumber = true }) {
+function RatingStars({ rating, source, showNumber = true }) {
   const num = parseFloat(rating)
+  const scoreSource = source === 'weread' ? '微信读书' : '豆瓣'
   if (isNaN(num) || num <= 0) {
     return <span className="rating-none-text">暂无评分</span>
   }
@@ -142,7 +143,7 @@ function RatingStars({ rating, showNumber = true }) {
   const emptyStars = Math.max(0, 5 - fullStars - (hasHalf ? 1 : 0))
 
   return (
-    <div className="rating-stars-row" title={`豆瓣参考评分 ${num} 分`}>
+    <div className="rating-stars-row" title={`${scoreSource}参考评分 ${num} 分`}>
       <span className="rating-stars-icons" aria-hidden="true">
         {'★'.repeat(fullStars)}
         {hasHalf && '★'}
@@ -417,7 +418,7 @@ function App() {
         <section className="editorial-masthead">
           <h1 className="masthead-title">跨行业读者真实推荐书目索引</h1>
           <p className="masthead-intro">
-            精选自小红书 578 条高赞讨论与深度楼中楼交流，收录 170 册经行业读者真实检验的入门与代表经典。包含原帖推荐理由、点赞热度及豆瓣参考评分。
+            精选自小红书 578 条高赞讨论与深度楼中楼交流，收录 170 册经行业读者真实检验的入门与代表经典。包含原帖推荐理由、点赞热度及豆瓣 / 微信读书参考评分。
           </p>
         </section>
 
@@ -494,7 +495,7 @@ function App() {
               >
                 <option value="likes">原帖获赞数 (高到低)</option>
                 <option value="mentions">讨论提及次数 (多到少)</option>
-                <option value="rating">豆瓣参考评分 (高到低)</option>
+                <option value="rating">参考评分 (高到低)</option>
                 <option value="title">书名拼音首字母</option>
               </select>
             </div>
@@ -605,7 +606,7 @@ function App() {
                     </div>
 
                     <div className="card-bottom-rating-meta">
-                      <RatingStars rating={book.rating} />
+                      <RatingStars rating={book.rating} source={book.ratingSource} />
                       <span className="card-category-tag">{book.category}</span>
                     </div>
                   </div>
@@ -646,7 +647,7 @@ function App() {
                     </p>
 
                     <div className="list-rating-row">
-                      <RatingStars rating={book.rating} />
+                      <RatingStars rating={book.rating} source={book.ratingSource} />
                     </div>
 
                     {/* Practitioner Comment Box */}
@@ -875,15 +876,17 @@ function App() {
                   <div className="douban-score-row">
                     <div className="score-badge-box">
                       <span className="score-big">{selectedBook.rating || '—'}</span>
-                      <span className="score-unit">豆瓣参考分</span>
+                      <span className="score-unit">
+                        {selectedBook.ratingSource === 'weread' ? '微信读书参考分' : '豆瓣参考分'}
+                      </span>
                     </div>
                     <div className="score-stars-col">
-                      <RatingStars rating={selectedBook.rating} showNumber={false} />
+                      <RatingStars rating={selectedBook.rating} source={selectedBook.ratingSource} showNumber={false} />
                       <span className="score-desc">
                         {selectedBook.rating
-                          ? parseFloat(selectedBook.rating) >= 9.0
-                            ? '豆瓣 9.0+ 高分口碑著作'
-                            : '读者评分数据已同步'
+                          ? `${selectedBook.ratingSource === 'weread' ? '微信读书' : '豆瓣'} ${
+                              parseFloat(selectedBook.rating) >= 9.0 ? '9.0+ 高分口碑著作' : '读者评分数据已同步'
+                            }，评分对应卡片封面所示版本`
                           : '暂无直接评分，可点击左侧按钮前往豆瓣查阅'}
                       </span>
                     </div>
