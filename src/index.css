@@ -2,10 +2,10 @@
   /* Default Theme: 砚墨深蓝 (Navy & Coral Ink) */
   --brand-nav: #162a45;
   --brand-nav-text: #ffffff;
-  --brand-nav-sub: #d0dbe7;
+  --brand-nav-sub: #ddd8ce;
   --brand-primary: #1d3557;
   --brand-primary-hover: #122238;
-  --brand-primary-light: #eaf1f8;
+  --brand-primary-light: #edeae3;
   
   --brand-accent: #e63946;
   --brand-accent-hover: #c92a37;
@@ -15,19 +15,19 @@
   --brand-gold-light: #fef5e7;
   --brand-star: #e09015;
 
-  --bg-app: #f4f6f9;
+  --bg-app: #f5f3ef;
   --bg-card: #ffffff;
-  --bg-card-hover: #fafbfc;
-  --bg-muted: #edf1f6;
-  --bg-subtle: #f8fafc;
+  --bg-card-hover: #faf8f4;
+  --bg-muted: #efece5;
+  --bg-subtle: #faf8f3;
 
-  --ink-primary: #19202c;
-  --ink-secondary: #475569;
-  --ink-muted: #64748b;
-  --ink-faint: #94a3b8;
+  --ink-primary: #1f1c19;
+  --ink-secondary: #57504a;
+  --ink-muted: #6e675e;
+  --ink-faint: #978d82;
 
-  --link-color: #2563eb;
-  --link-hover-bg: #2563eb;
+  --link-color: #1d3557;
+  --link-hover-bg: #1d3557;
   --link-hover-text: #ffffff;
 
   --xhs-red: #ff2442;
@@ -39,9 +39,9 @@
   --shelf-wood-dark: #322115;
   --shelf-shadow: rgba(0, 0, 0, 0.35);
 
-  --line-subtle: #e2e8f0;
-  --line-regular: #cbd5e1;
-  --line-strong: #94a3b8;
+  --line-subtle: #e4e0d8;
+  --line-regular: #d2ccc0;
+  --line-strong: #978d82;
 
   --card-shadow: 0 2px 8px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
   --card-shadow-hover: 0 12px 28px rgba(15, 23, 42, 0.12), 0 3px 8px rgba(15, 23, 42, 0.06);
@@ -63,12 +63,12 @@
   --brand-nav: #4a2818;
   --brand-nav-text: #faede6;
   --brand-nav-sub: #e6cec1;
-  --brand-primary: #7a3a1e;
-  --brand-primary-hover: #5e2a14;
+  --brand-primary: #6e3b22;
+  --brand-primary-hover: #57301c;
   --brand-primary-light: #fbeee8;
 
-  --brand-accent: #c44525;
-  --brand-accent-hover: #a33519;
+  --brand-accent: #b03a30;
+  --brand-accent-hover: #8f2e26;
   --brand-accent-light: #fceeda;
 
   --brand-gold: #c97a16;
@@ -86,8 +86,8 @@
   --ink-muted: #7d6c60;
   --ink-faint: #a69689;
 
-  --link-color: #a84824;
-  --xhs-red: #c44525;
+  --link-color: #8a3b2a;
+  --xhs-red: #b03a30;
   --xhs-red-light: #faece6;
   --xhs-red-border: #f0cfc2;
 
@@ -99,11 +99,11 @@
 /* Theme 3: 玄夜深色 (Midnight Slate Dark) */
 [data-theme="dark"] {
   --brand-nav: #0f1318;
-  --brand-nav-text: #e2e8f0;
-  --brand-nav-sub: #94a3b8;
-  --brand-primary: #3b82f6;
-  --brand-primary-hover: #2563eb;
-  --brand-primary-light: #1e293b;
+  --brand-nav-text: #e8e4dc;
+  --brand-nav-sub: #978d82;
+  --brand-primary: #6b8cae;
+  --brand-primary-hover: #55779a;
+  --brand-primary-light: #26221e;
 
   --brand-accent: #f43f5e;
   --brand-accent-hover: #e11d48;
@@ -113,18 +113,18 @@
   --brand-gold-light: #2d2311;
   --brand-star: #fbbf24;
 
-  --bg-app: #0f141c;
-  --bg-card: #19202c;
-  --bg-card-hover: #212b3b;
-  --bg-muted: #141a24;
-  --bg-subtle: #1e2634;
+  --bg-app: #141210;
+  --bg-card: #1e1b17;
+  --bg-card-hover: #2a2620;
+  --bg-muted: #191613;
+  --bg-subtle: #24211c;
 
-  --ink-primary: #f1f5f9;
-  --ink-secondary: #cbd5e1;
-  --ink-muted: #94a3b8;
-  --ink-faint: #64748b;
+  --ink-primary: #f2efe8;
+  --ink-secondary: #cfc9bc;
+  --ink-muted: #978d82;
+  --ink-faint: #6e675e;
 
-  --link-color: #60a5fa;
+  --link-color: #8fb0cc;
   --xhs-red: #fb7185;
   --xhs-red-light: #2b141a;
   --xhs-red-border: #4d1c27;
@@ -134,9 +134,9 @@
   --shelf-wood-dark: #120e0a;
   --shelf-shadow: rgba(0, 0, 0, 0.75);
 
-  --line-subtle: #242f40;
-  --line-regular: #334155;
-  --line-strong: #475569;
+  --line-subtle: #2e2a25;
+  --line-regular: #3d3831;
+  --line-strong: #57504a;
 
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
   --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.3);
