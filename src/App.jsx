@@ -125,7 +125,7 @@ function getCategoryColor(category) {
   for (let i = 0; i < category.length; i++) {
     hash = category.charCodeAt(i) + ((hash << 5) - hash)
   }
-  const hues = [215, 230, 25, 150, 190, 275, 340, 40]
+  const hues = [215, 230, 150, 190, 275, 340, 200, 320]
   const hue = hues[Math.abs(hash) % hues.length]
   return `hsl(${hue}, 38%, 26%)`
 }
@@ -138,15 +138,13 @@ function RatingStars({ rating, source, showNumber = true }) {
     return <span className="rating-none-text">暂无评分</span>
   }
 
-  const fullStars = Math.floor(num / 2)
-  const hasHalf = num % 2 >= 0.8
-  const emptyStars = Math.max(0, 5 - fullStars - (hasHalf ? 1 : 0))
+  const fullStars = Math.min(5, Math.round(num / 2))
+  const emptyStars = 5 - fullStars
 
   return (
     <div className="rating-stars-row" title={`${scoreSource}参考评分 ${num} 分`}>
       <span className="rating-stars-icons" aria-hidden="true">
         {'★'.repeat(fullStars)}
-        {hasHalf && '★'}
         {'☆'.repeat(emptyStars)}
       </span>
       {showNumber && <span className="rating-num-val">{num.toFixed(1)}</span>}
@@ -255,6 +253,14 @@ function App() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [selectedBook, randomModalOpen])
+
+  const openOnKey = (book) => (e) => {
+    if (e.target !== e.currentTarget) return
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setSelectedBook(book)
+    }
+  }
 
   const toggleBookmark = (title, e) => {
     if (e) e.stopPropagation()
@@ -436,6 +442,7 @@ function App() {
             <button
               type="button"
               className={`rec-tab-btn ${activeTab === 'popular' ? 'is-active' : ''}`}
+              title="原帖获赞 40 以上"
               onClick={() => setActiveTab('popular')}
             >
               高赞精选 ({books.filter((b) => (b.likes || 0) >= 40).length})
@@ -443,6 +450,7 @@ function App() {
             <button
               type="button"
               className={`rec-tab-btn ${activeTab === 'high_mentions' ? 'is-active' : ''}`}
+              title="在讨论中被提及 3 次以上"
               onClick={() => setActiveTab('high_mentions')}
             >
               多次热议 ({books.filter((b) => (b.mentions || 0) >= 3).length})
@@ -450,6 +458,7 @@ function App() {
             <button
               type="button"
               className={`rec-tab-btn ${activeTab === 'high_rating' ? 'is-active' : ''}`}
+              title="参考评分 9.0 分以上"
               onClick={() => setActiveTab('high_rating')}
             >
               高分著作 9.0+ ({books.filter((b) => parseFloat(b.rating || 0) >= 9.0).length})
@@ -457,6 +466,7 @@ function App() {
             <button
               type="button"
               className={`rec-tab-btn bookmark-tab-btn ${activeTab === 'bookmarks' ? 'is-active' : ''}`}
+              title="你收藏的书目"
               onClick={() => setActiveTab('bookmarks')}
             >
               我的书签 ({bookmarks.length})
@@ -561,6 +571,10 @@ function App() {
                   className="book-grid-card-item"
                   key={`${book.title}-${book.category}-${idx}`}
                   onClick={() => setSelectedBook(book)}
+                  onKeyDown={openOnKey(book)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`查看《${book.title}》详情`}
                 >
                   <div className="card-cover-container">
                     <BookCover book={book} className="grid-cover-frame" priority={idx < 8} />
@@ -578,7 +592,7 @@ function App() {
                       title={isBookmarked ? '已收藏' : '收藏'}
                       aria-label={isBookmarked ? `取消收藏《${book.title}》` : `收藏《${book.title}》`}
                     >
-                      {isBookmarked ? '★ 已藏' : '☆ 收藏'}
+                      {isBookmarked ? '★ 已收藏' : '☆ 收藏'}
                     </button>
                   </div>
 
@@ -594,7 +608,7 @@ function App() {
                     <div className="card-xhs-comment-strip">
                       <div className="xhs-commenter-row">
                         <span className="xhs-commenter-name">
-                          推荐人 · {book.sourceAuthor || '热心书友'}
+                          推荐人：{book.sourceAuthor || '热心书友'}
                         </span>
                         <span className="xhs-likes-count">{book.likes} 赞</span>
                       </div>
@@ -628,6 +642,10 @@ function App() {
                   className="book-list-row-item"
                   key={`${book.title}-${book.category}-${idx}`}
                   onClick={() => setSelectedBook(book)}
+                  onKeyDown={openOnKey(book)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`查看《${book.title}》详情`}
                 >
                   <div className="list-cover-col">
                     <BookCover book={book} className="list-cover-frame" priority={idx < 6} />
@@ -673,7 +691,7 @@ function App() {
                       className={`list-bookmark-btn ${isBookmarked ? 'is-active' : ''}`}
                       onClick={(e) => toggleBookmark(book.title, e)}
                     >
-                      {isBookmarked ? '★ 已在书签' : '☆ 收入书签'}
+                      {isBookmarked ? '★ 已收藏' : '☆ 收藏'}
                     </button>
 
                     <button
@@ -681,7 +699,7 @@ function App() {
                       className="list-view-detail-btn"
                       onClick={() => setSelectedBook(book)}
                     >
-                      查看推荐档案
+                      查看详情
                     </button>
 
                     <a
@@ -723,6 +741,10 @@ function App() {
                             key={`${book.title}-${book.category}`}
                             className="standing-book-wrapper"
                             onClick={() => setSelectedBook(book)}
+                            onKeyDown={openOnKey(book)}
+                            tabIndex={0}
+                            role="button"
+                            aria-label={`查看《${book.title}》详情`}
                           >
                             <BookCover book={book} className="standing-book-cover" />
                             <div className="standing-book-title" title={book.title}>
@@ -770,9 +792,7 @@ function App() {
         <footer className="brand-page-footer">
           <div className="footer-nav-links">
             <span>数据源：小红书行业入读书单评论精析</span>
-            <span className="footer-dot">·</span>
             <span>总计收录 170 册代表书目</span>
-            <span className="footer-dot">·</span>
             <span>精析 578 条评论</span>
           </div>
           <p className="footer-copyright-note">
@@ -813,7 +833,7 @@ function App() {
                     className={`modal-bookmark-toggle ${bookmarks.includes(selectedBook.title) ? 'is-active' : ''}`}
                     onClick={() => toggleBookmark(selectedBook.title)}
                   >
-                    {bookmarks.includes(selectedBook.title) ? '★ 已在我的书签' : '☆ 收入书签'}
+                    {bookmarks.includes(selectedBook.title) ? '★ 已收藏' : '☆ 收藏'}
                   </button>
 
                   <a
@@ -822,7 +842,7 @@ function App() {
                     rel="noreferrer"
                     className="modal-douban-link"
                   >
-                    <span>在豆瓣查验版本</span>
+                    <span>在豆瓣查阅</span>
                     <IconExternal />
                   </a>
                 </div>
@@ -842,8 +862,8 @@ function App() {
                 {/* Original Practitioner Comment Dossier */}
                 <div className="modal-xhs-dossier-card">
                   <div className="dossier-header-bar">
-                    <span className="dossier-badge">读者原帖推荐档案</span>
-                    <span className="dossier-confidence">信度：{selectedBook.confidence || '书名号提及'}</span>
+                    <span className="dossier-badge">读者原帖推荐</span>
+                    <span className="dossier-confidence">推荐依据：{selectedBook.confidence || '书名号提及'}</span>
                   </div>
 
                   <div className="dossier-metrics-grid">
@@ -963,7 +983,7 @@ function App() {
                     className={`random-bookmark-btn ${bookmarks.includes(randomBook.title) ? 'is-active' : ''}`}
                     onClick={() => toggleBookmark(randomBook.title)}
                   >
-                    {bookmarks.includes(randomBook.title) ? '★ 已在书签' : '☆ 收入书签'}
+                    {bookmarks.includes(randomBook.title) ? '★ 已收藏' : '☆ 收藏'}
                   </button>
                   <a
                     href={doubanSearchUrl(randomBook, doubanMode)}
