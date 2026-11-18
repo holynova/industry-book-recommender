@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="360" viewBox="0 0 1200 360"
+     role="img" aria-labelledby="title desc">
+  <title id="title">各行各业读什么 — 按行业推荐一本书</title>
+  <desc id="desc">暖纸底编辑风：各行各业读什么；右侧三本书脊——经济学原理 9.5、高等代数 9.8、乡土中国 9.2。</desc>
+
+  <rect width="1200" height="360" rx="26" fill="#f7f3ea"/>
+
+  <g id="title-block" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="56" y="62" font-size="19" letter-spacing="3" fill="#7a6c54">行业书单 · WHAT EACH PROFESSION READS</text>
+    <text x="56" y="128" font-size="62" font-weight="700" fill="#1e3a5f">各行各业读什么</text>
+    <text x="56" y="168" font-size="23" fill="#4a4030">按行业推荐一本书 — 170 本书，来自小红书评论区</text>
+    <text x="56" y="204" font-size="19" fill="#7a6c54">搜书名、作者、行业门类；每本带推荐理由与豆瓣评分。</text>
+    <g id="chips" font-size="18" fill="#2b2620" text-anchor="middle">
+      <g><rect x="56" y="238" width="126" height="36" rx="18" fill="#efe7d3" stroke="#d8cbb0" stroke-width="1.5"/><text x="119" y="262">170 本书</text></g>
+      <g><rect x="194" y="238" width="138" height="36" rx="18" fill="#efe7d3" stroke="#d8cbb0" stroke-width="1.5"/><text x="263" y="262">54 个学科</text></g>
+      <g><rect x="344" y="238" width="186" height="36" rx="18" fill="#efe7d3" stroke="#d8cbb0" stroke-width="1.5"/><text x="437" y="262">102 条直跳豆瓣</text></g>
+      <g><rect x="542" y="238" width="126" height="36" rx="18" fill="#efe7d3" stroke="#d8cbb0" stroke-width="1.5"/><text x="605" y="262">3 种主题</text></g>
+    </g>
+  </g>
+
+  <g id="spines" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="830" y="44" font-size="18" fill="#7a6c54">点赞最高的几本，评分也最高</text>
+    <!-- shelf -->
+    <rect x="800" y="308" width="340" height="10" rx="5" fill="#c9b896"/>
+    <!-- spine 1: 经济学原理 -->
+    <g>
+      <rect x="820" y="64" width="88" height="244" rx="6" fill="#1e3a5f"/>
+      <rect x="820" y="64" width="10" height="244" rx="5" fill="#16304f"/>
+      <text x="864" y="110" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">经济</text>
+      <text x="864" y="142" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">学原</text>
+      <text x="864" y="174" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">理</text>
+      <text x="864" y="236" font-size="16" fill="#c9d6e8" text-anchor="middle">曼昆</text>
+      <text x="864" y="286" font-size="20" font-weight="700" fill="#e8c96a" text-anchor="middle">★ 9.5</text>
+    </g>
+    <!-- spine 2: 高等代数 -->
+    <g>
+      <rect x="920" y="64" width="88" height="244" rx="6" fill="#8a2f2b"/>
+      <rect x="920" y="64" width="10" height="244" rx="5" fill="#722623"/>
+      <text x="964" y="110" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">高等</text>
+      <text x="964" y="142" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">代数</text>
+      <text x="964" y="236" font-size="16" fill="#f0d0cd" text-anchor="middle">丘维声</text>
+      <text x="964" y="286" font-size="20" font-weight="700" fill="#e8c96a" text-anchor="middle">★ 9.8</text>
+    </g>
+    <!-- spine 3: 乡土中国 -->
+    <g>
+      <rect x="1020" y="64" width="88" height="244" rx="6" fill="#5a6b3a"/>
+      <rect x="1020" y="64" width="10" height="244" rx="5" fill="#48582e"/>
+      <text x="1064" y="110" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">乡土</text>
+      <text x="1064" y="142" font-size="24" font-weight="700" fill="#f7f3ea" text-anchor="middle">中国</text>
+      <text x="1064" y="236" font-size="16" fill="#dde6cc" text-anchor="middle">费孝通</text>
+      <text x="1064" y="286" font-size="20" font-weight="700" fill="#e8c96a" text-anchor="middle">★ 9.2</text>
+    </g>
+  </g>
+</svg>
